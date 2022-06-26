@@ -3,6 +3,20 @@
 
 window.emu = (function() {
 	
+	var delay = 1.0 / (1000.0 / 60.0);
+	var time = null;
+	
+	function shouldRenderNewFrame(timestamp) {
+		if (time === null)
+			time = timestamp;
+		var seg = Math.floor((timestamp - time) * delay);
+		if (seg <= frame) {
+			return false;
+		}
+
+		return true;
+	}
+
 	var preloadedData = {};
 	var cart = {
 		prg: null, chr: null
@@ -127,8 +141,11 @@ function ppuReset() {
 	addressLatch = false;
 	enableNmi = false;
 }
-function ppuAdvanceFrame() {
-	
+function ppuAdvanceFrame(timestamp) {
+	if (!shouldRenderNewFrame(timestamp)) {
+		timing = window.requestAnimationFrame(ppuAdvanceFrame);
+		return;
+	}
 	//apuFrameCount();
 	
 	frame++;
