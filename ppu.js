@@ -44,8 +44,11 @@ function ppuReset() {
 	addressLatch = false;
 	enableNmi = false;
 }
-function ppuAdvanceFrame() {
-	
+function ppuAdvanceFrame(timestamp) {
+	if (!shouldRenderNewFrame(timestamp)) {
+		timing = window.requestAnimationFrame(ppuAdvanceFrame);
+		return;
+	}
 	//apuFrameCount();
 	
 	frame++;
