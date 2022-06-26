@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.1-jessie
+      - image: cimg/php:8.1.7
 
     steps:
       - checkout
