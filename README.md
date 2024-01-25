@@ -34,7 +34,7 @@ If you fork this version of `Nez` on Github, you can use it to play your own gam
 work than the other options, but works just as well.
 
 How to do it: 
-1. Fork the `Nez` repository from [cppchriscpp's github](https://github.com/cppchriscpp/nez) to your own account.
+1. Fork the `Nez` repository from [this account](https://gh.nes.science/nez) to your own account.
 2. Make a change to `readme.md` and save/commit it. (This works around a github quirk and publishes the site for you.)
 3. Go to the `settings` tab on your repository, then to `Branches` and change the default branch to `gh-pages`. 
    ![context](./docs/gh_branches.png)
@@ -109,8 +109,7 @@ This should result in something like this:
 
 # It doesn't work! Help!
 
-If you're having trouble, feel free to either open a github issue, or 
-[contact me on twitter](https://twitter.com/cppchriscpp)!
+If you're having trouble, feel free to either open a github issue, or [email me](mailto:admin@cpprograms.net)!
 
 # Advanced Stuff
 
