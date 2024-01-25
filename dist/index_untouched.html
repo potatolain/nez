@@ -245,8 +245,7 @@
 		This is a game...
 	</div>
 	<h2>
-		<a href="https://twitter.com/cppchriscpp" target="_blank"><i class="fab fa-twitter-square"></i></a>
-		<a href="https://github.com/cppchriscpp/nez" target="_blank"><i class="fab fa-github-square"></i></a>
+		<a href="https://gh.nes.science/nez" target="_blank"><i class="fab fa-github-square"></i></a>
 		<span onclick="$('.text').toggle(); $(window).scrollTop(100000)">
 			More about NEZ <i class="fas fa-chevron-circle-down"></i>
 		</span>
@@ -257,10 +256,9 @@
 		He wrote the code that makes this whole thing tick, and deserves full credit!<br /><br />
 		
 		I forked this emulator to add a few new features, and to try to make it as friendly as possible for individual developers to create an emulator for their games. I added an easy way to auto-load games and an embed feature,
-		so if you want to set this up for yourself, it shouldn't be hard! Check it out <a href="https://github.com/cppchriscpp/nez" target="_blank">on Github</a> for instructions on setting it up</a>.<br /><br />
-		My Twitter is open for feedback as well! <a href="https://twitter.com/cppchriscpp" target="_blank">@cppchriscpp</a><br /><br />
-		~ Chris<br />
-
+		so if you want to set this up for yourself, it shouldn't be hard! Check it out <a href="https://gh.nes.science/nez" target="_blank">on Github</a> for instructions on setting it up</a>.<br /><br />
+		Issues and feature requests are welcome via Github!
+		<br /><br />
 		<br />
 	</div>
 </body>

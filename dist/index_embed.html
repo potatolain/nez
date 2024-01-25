@@ -4,7 +4,6 @@
     <!-- 
         This is a modified version of nez suitable for embedding in webpages in an iframe, and interacting with using
         various APIs. I hope to document this at some point in something like an `embedding.md` file.
-        - cppchriscpp
     -->
 	<meta charset="utf-8" />
 	<title>NEZ - play NES while surfing the WWW :O</title>
@@ -231,9 +230,9 @@
 
 		<p>Nez was written by <a href="https://github.com/Sumez" target="_blank">Sumez</a>. (<a href="https://github.com/Sumez/nez" target="_blank">Main Nez Source</a>)</p>
 
-		<p>It has been adapted for embedding and interaction by <a href="https://github.com/cppchriscpp" target="_blank">cppchriscpp</a>.</p>
+		<p>It has been adapted for embedding and interaction.</p>
 
-		<p><a href="https://github.com/cppchriscpp/nez" target="_blank">Source</a>
+		<p><a href="https://gh.nes.science/nez" target="_blank">Source</a>
 
 		<p>Nez is available under the <a href="https://github.com/Sumez/nez/blob/master/LICENSE" target="_blank">GPL v3</a>.</p>
 	</div>
