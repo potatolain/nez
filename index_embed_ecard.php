@@ -237,7 +237,7 @@
 
 		<p>It has been adapted for embedding and interaction, and e-reader simulation.</p>
 
-		<p><a href="https://gh.nes.science/nez" target="_blank">Source</a>
+		<p><a href="https://gh.nes.science/nez/tree/ecard" target="_blank">Source</a>
 
 		<p>Nez is available under the <a href="https://github.com/Sumez/nez/blob/master/LICENSE" target="_blank">GPL v3</a>.</p>
 	</div>
