@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Squishy The Turtle</title>
+    <link rel="stylesheet" href="ecard.css">
+  </head>
+  <body class="wrapper">
+    <main>
+        <div class="uhoh">
+            <h1>Please rotate your phone to play!</h1>
+        </div>
+        <div class="gb-left">
+            <div class="ctrl-pad">
+                <div class="row1">
+                    <div class="up">&#9662;</div>
+                </div>
+                <div class="row2">
+                    <div class="left">&#9666;</div>
+                    <div class="center">&#9678;</div>
+                    <div class="right">&#9656;</div>
+                </div>
+                <div class="row3">
+                    <div class="down">&#9662;</div>
+                </div>
+            </div>
+            <div class="start-select">
+                <div class="start">start</div>
+                <div class="select">select</div>
+            </div>
+        </div>
+        <iframe class="emu-frame" src="index_embed_ecard.html"></iframe>
+        <div class="gb-right">
+            <div class="green-dot"></div>
+            <div class="buttons">
+                <div class="b">B</div>
+                <div class="a">A</div>
+            </div>
+            <div class="grille"></div>
+        </div>
+    </main>
+    <script type="text/javascript">
+        const iframe = document.querySelector('.emu-frame');
+        ['up', 'down', 'left', 'right', 'start', 'select', 'a', 'b'].forEach(btn => {
+            const elem = document.querySelector('.' + btn)
+            elem.addEventListener('mousedown', event => { iframe.contentWindow.emu.controller[btn + 'Pressed'](); event.preventDefault(); });
+            elem.addEventListener('touchstart', event => { iframe.contentWindow.emu.controller[btn + 'Pressed'](); event.preventDefault(); });
+            elem.addEventListener('mouseup', event => { iframe.contentWindow.emu.controller[btn + 'Released'](); event.preventDefault(); });
+            elem.addEventListener('touchend', event => { iframe.contentWindow.emu.controller[btn + 'Released'](); event.preventDefault(); });
+        })
+
+        // Work around an obnoxious safari mobile bug where it'll "helpfully" show a mangifier we don't want no matter what css is used
+        ['.ctrl-pad .center', '.gb-left', '.gb-right'].forEach(sel => {
+        const elem = document.querySelector(sel);
+            elem.addEventListener('mousedown', event => event.preventDefault);
+            elem.addEventListener('touchstart', event => event.preventDefault);
+            elem.addEventListener('mouseup', event => event.preventDefault);
+            elem.addEventListener('touchend', event => event.preventDefault);
+        });
+
+    </script>
+  </body>
+</html>

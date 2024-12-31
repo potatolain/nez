@@ -24,3 +24,4 @@ copy *.glsl dist
 copy *.png dist
 copy *.css dist
 copy config.js dist
+copy ereader_wrapper.html dist

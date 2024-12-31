@@ -4,3 +4,217 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+body.wrapper {
+    background-color: #000;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-callout: none;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-callout: none;
+    -webkit-user-drag: none;
+    -webkit-user-modify: none;
+    -webkit-highlight: none;
+    -webkit-text-size-adjust: none;
+}
+
+body.wrapper > * {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-callout: none;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-callout: none;
+    -webkit-user-drag: none;
+    -webkit-user-modify: none;
+    -webkit-highlight: none;
+    -webkit-text-size-adjust: none;
+}
+
+body.wrapper main {
+    display: flex;
+}
+
+#clickMe {
+    background-color: #000;
+    color: #fff;
+}
+
+@media (min-width: 0) {
+    .emu-frame {
+        width: 100vw;
+        height: 100vh;
+        height: 100svh;
+        border: none;
+        outline: none;
+    }
+    .uhoh {
+        display: none;
+    }
+}
+
+
+@media (hover: none) and (orientation: portrait) {
+    main > * {
+        display: none;
+    }
+    main > div.uhoh {
+        display: block;
+        color: #fff;
+        line-height: 100vh;
+        line-height: 100svh;
+        text-align: center;
+        width: 100vw;
+        font-size: 3vw;
+    }
+}
+
+@media (orientation: landscape) {
+    .emu-frame, .gb-left, .gb-right {
+        margin-top: 1vh;
+    }
+
+    .emu-frame {
+        width: 60vw;
+        height: 98vh;
+        height: 98svh;
+        border: none;
+        outline: none;
+    }
+
+    .gb-left {
+        width: 20vw;
+        height: 98vh;
+        height: 98svh;
+        background-color: #988993;
+        border-radius: 15px 0 0 15px;
+        position: relative;
+    }
+
+    .ctrl-pad {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 20%;
+        left: 0.5vw;
+    }
+
+    .ctrl-pad > div {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .ctrl-pad .up, .ctrl-pad .down, .ctrl-pad .left, .ctrl-pad .right, .ctrl-pad .center {
+        width: 6vw;
+        height: 6vw; /* Equal sizing */
+        background-color: #ddd;
+        cursor: pointer;
+        line-height: 6vw;
+        font-size: 6vw;
+        color: #fff;
+    }
+
+    .ctrl-pad .up, .ctrl-pad .down {
+        margin-left: 6vw;
+    }
+
+    .ctrl-pad .center {
+        color: #ccc;
+    }
+
+    .start-select {
+        position: absolute;
+        bottom: 4vh;
+        bottom: 4svh;
+        right: 2vh;
+        right: 2svh;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .start-select > div {
+        border-radius: 999px;
+        width: 6vw;
+        height: 4vh;
+        height: 4svh;
+        background-color: #ddd;
+        margin-top: 1vh;
+        margin-top: 1svh;
+        line-height: 4vh;
+        line-height: 4svh;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .gb-right {
+        width: 20vw;
+        height: 98vh;
+        height: 98svh;
+        background-color: #988993;
+        border-radius: 0 15px 15px 0;
+        position: relative;
+    }
+
+    .green-dot {
+        background-color: greenyellow;
+        width: 1vw;
+        height: 1vh;
+        height: 1svh;
+        border-radius: 50%;
+        position: absolute;
+        top: 8vh;
+        top: 8svh;
+        left: 2vw;
+    }
+
+    .gb-right .buttons {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        left: 0;
+        bottom: 40vh;
+        bottom: 40svh;
+        text-align: center;
+    }
+
+    .gb-right .buttons > div {
+        border-radius: 50%;
+        color: #fff;
+        width: 7vw;
+        height: 7vw; /* Yes, really vw. I want them round! */
+        line-height: 7vw;
+        margin-left: 2vw;
+        font-size: 4vw;
+        
+        background-color: #ddd;
+    }
+
+    .gb-right .buttons .b {
+        margin-top: 2vh;
+        margin-top: 2svh;
+    }
+
+    .gb-right .grille {
+        position: absolute;
+        color: #ddd;
+        opacity: 0.8;
+        bottom: 10vh;
+        right: 4vw;
+        width: 12vw;
+        height: 20vh;
+        bottom: 10svh;
+        height: 20svh;
+        background-color: #988993;
+        background-image: linear-gradient(0deg, #988993 50%, #afb0bc 50%);
+        background-size: 8px 8px;
+    }
+}
+
+.ctrl-pad .up {
+    transform: rotate(180deg);
+}

@@ -149,10 +149,10 @@
 			var windowWidth = window.screen.width;
 
 			if (!isFullscreen) {
-				windowHeight = window.innerHeight - 50; // Add buffer for interface stuff
-				windowWidth = window.innerWidth - 15;
-				windowHeight = Math.max(240, windowHeight - (windowHeight % 240));
-				windowWidth = Math.max(256, windowWidth - (windowWidth % 256));
+				windowHeight = window.innerHeight - 10; // Add buffer for interface stuff
+				windowWidth = window.innerWidth - 2;
+				windowHeight = Math.max(240, windowHeight - (windowHeight % 120));
+				windowWidth = Math.max(256, windowWidth - (windowWidth % 128));
 			}
 			
 			var height = windowHeight;
@@ -182,7 +182,8 @@
 			var ctx = $('.nes')[0].getContext('2d');
 			ctx.imageSmoothingEnabled = ctx.webkitImageSmoothingEnabled = ctx.mozImageSmoothingEnabled = false;
 			var height = window.innerHeight - 50
-			ctx.drawImage($('.logo')[0], 0, 0, 256, 240, 0, 0, ctx.canvas.width, (height - ((height - 50) * (92 / 256))));
+			// I can NOT get the resolution for this right, disabling for now. 
+			// ctx.drawImage($('.logo')[0], 0, 0, 256, 240, 0, 0, ctx.canvas.width, (height - ((height - 50) * (92 / 256))));
 		}
 		$('.logo').on('load', drawLogo);
 		
