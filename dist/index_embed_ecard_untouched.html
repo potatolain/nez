@@ -87,7 +87,7 @@
 	<script type="text/javascript" src="emulatorscript.php?3"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<img src="nez.png" style="display: none;" class="logo" />
-	<div id="clickMe" class="embed" style="display: block;" onclick="window.emu.startPreloadedGame()"><h1>Click here!</h1></div>
+	<div id="clickMe" class="embed" style="display: block;" onclick="window.emu.startPreloadedGame()"><h1>Press here!</h1></div>
 	<div class="emulator" style="display: none;">
 		<canvas class="nes" width="512" height="480"></canvas>
 	</div>
