@@ -317,6 +317,8 @@ h2 span {
     position: absolute;
     left: 0;
     top: 0;
+	/* Place above controls if they're not embedded in the emu div */
+	z-index: 1;
 }
 
 #clickMe {

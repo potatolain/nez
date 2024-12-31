@@ -181,7 +181,8 @@
 		function drawLogo() {
 			var ctx = $('.nes')[0].getContext('2d');
 			ctx.imageSmoothingEnabled = ctx.webkitImageSmoothingEnabled = ctx.mozImageSmoothingEnabled = false;
-			ctx.drawImage($('.logo')[0], 0, 0, 256, 240, 0, 0, ctx.canvas.width, ctx.canvas.height);
+			var height = window.innerHeight - 50
+			ctx.drawImage($('.logo')[0], 0, 0, 256, 240, 0, 0, ctx.canvas.width, (height - ((height - 50) * (92 / 256))));
 		}
 		$('.logo').on('load', drawLogo);
 		
