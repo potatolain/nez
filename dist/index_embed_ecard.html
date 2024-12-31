@@ -90,33 +90,34 @@
 	<div id="clickMe" class="embed" style="display: block;" onclick="window.emu.startPreloadedGame()"><h1>Click here!</h1></div>
 	<div class="emulator" style="display: none;">
 		<canvas class="nes" width="512" height="480"></canvas>
-		<div class="controls">
-			<div title="Open NES ROM file" class="button open">
-				<input class="rom-file" type="file" accept=".nes" onchange="loadfile(this)" />
-				<img src="open.svg">
-			</div>
-			<div title="Toggle pause" class="button pause" onclick="togglePause()" style="margin-right: auto">
-				<img class="pause-state" src="pause.svg">
-			</div>
-			<i class="fas fa-volume-off"></i>
-			<input type="range" min="0" max="100" value="50" oninput="emu.volume(this.value / 100); config.volume = this.value; save(); this.focus()">
-			<div title="Enable SNES mouse" class="button" onclick="emu.useMouse()">
-				<img src="mouse.svg">
-			</div>
-			<div title="Configure controller buttons" class="button controller" onclick="emu.buttonConfig()">
-				<img src="controller.svg">
-			</div>
-			<div title="Toggle TV shader (might be slow)" class="button shader" onclick="toggleShader()">
-				<img src="tv.svg">
-			</div>
-			<div title="Full screen" class="button fullscreenButton" onclick="fullscreen()">
-				<img src="fullscreen.svg">
-			</div>
-			<div title="About Emulator" class="button emuInfo" onclick="showInfo()">
-				<img src="info.svg">
-			</div>
+	</div>
+	<div class="controls">
+		<div title="Open NES ROM file" class="button open">
+			<input class="rom-file" type="file" accept=".nes" onchange="loadfile(this)" />
+			<img src="open.svg">
+		</div>
+		<div title="Toggle pause" class="button pause" onclick="togglePause()" style="margin-right: auto">
+			<img class="pause-state" src="pause.svg">
+		</div>
+		<i class="fas fa-volume-off"></i>
+		<input type="range" min="0" max="100" value="50" oninput="emu.volume(this.value / 100); config.volume = this.value; save(); this.focus()">
+		<div title="Enable SNES mouse" class="button" onclick="emu.useMouse()">
+			<img src="mouse.svg">
+		</div>
+		<div title="Configure controller buttons" class="button controller" onclick="emu.buttonConfig()">
+			<img src="controller.svg">
+		</div>
+		<div title="Toggle TV shader (might be slow)" class="button shader" onclick="toggleShader()">
+			<img src="tv.svg">
+		</div>
+		<div title="Full screen" class="button fullscreenButton" onclick="fullscreen()">
+			<img src="fullscreen.svg">
+		</div>
+		<div title="About Emulator" class="button emuInfo" onclick="showInfo()">
+			<img src="info.svg">
 		</div>
 	</div>
+
 	<script type="text/javascript">
 		var config = {};
 		if (localStorage.config) {
@@ -164,7 +165,7 @@
 			
 			canvas.style.width = (canvas.width = width) + 'px';
 			canvas.style.height = (canvas.height = height) + 'px';
-            var visibleHeight = (height - ((height - 50) * (96 / 256)));
+            var visibleHeight = (height - ((height - 50) * (92 / 256)));
 			// emulator.style.top = ((window.screen.height - visibleHeight) / 2) + 'px';
 			// emulator.style.left = ((window.screen.width - width) / 2) + 'px';
             emulator.style.height = visibleHeight + 'px'
@@ -234,7 +235,7 @@
 
 		<p>Nez was written by <a href="https://github.com/Sumez" target="_blank">Sumez</a>. (<a href="https://github.com/Sumez/nez" target="_blank">Main Nez Source</a>)</p>
 
-		<p>It has been adapted for embedding and interaction.</p>
+		<p>It has been adapted for embedding and interaction, and e-reader simulation.</p>
 
 		<p><a href="https://gh.nes.science/nez" target="_blank">Source</a>
 

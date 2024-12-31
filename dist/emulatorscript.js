@@ -5,6 +5,7 @@ window.emu = (function() {
 	
 	var delay = 1.0 / (1000.0 / 60.0);
 	var time = null;
+
 	
 	function shouldRenderNewFrame(timestamp) {
 		if (time === null)
@@ -129,6 +130,8 @@ var yScroll = 0;
 var currentY = 0;
 var globalBgColor = 0; // palette change glitches
 
+var isGbaMode = !!window.EMULATOR_CONFIG.pretendToBeGba
+
 function ppuReset() {
 	frame = 0;
 	scanline = 0;
@@ -172,25 +175,68 @@ function ppuScanline() {
 	if (mmc5ScanlineIrqEnabled && scanline == irqCounter[2]) pendingIrq = true;
 	
 	if (scanline >= 240) return;
+	var gbaScanline = scanline
+
 	var spriteHeight = tallSprites ? 16 : 8;
 	sbi = -5;
 	
 	for (i = 0; i < 256; i += 4) {
 
-		var yOffset = scanline-oamMemory[i]-1;
-		if (yOffset < 0 || yOffset >= spriteHeight) continue;
+		var yOffset = gbaScanline-oamMemory[i]-1;
+		var firstSpriteScanline = oamMemory[i]
+		/*
+		// IF we find sprites aren't lining up like we expect, this can be used to tweak yoffset to fix them.
+		// NOTE: make sure to only tweak yOffsetSubtractor and not yOffset at this point!
+		if (isGbaMode) {
+			var hasSpriteAttachedAbove = false, has2SpritesAttachedAbove = false
+			// Loop through sprites again! Try to find above/below
+			for (var j = 0; j < 256; j += 4) {
+				var yOffset2 = gbaScanline-oamMemory[j]-1,
+					xOffset2 = oamMemory[j+3],
+					xOffset1 = oamMemory[i+3];
+
+				if (Math.abs(xOffset2 - xOffset1) < 3) {
+					// Maybe. Let's look at y
+					if (yOffset - 8 === yOffset2) {
+						hasSpriteAttachedAbove = true;
+					}
+					if (yOffset -16 === yOffset2) {
+						has2SpritesAttachedAbove = true;
+					}
+				}
+
+			}
+		}
+		*/
+
+		// Find which lines will be skipped by the scanline trickery we do later on, and duplicate them.
+		// Need to look at the first sprite scanline and calculate based off that, or we miss lines
+		// TODO: There's probably a way to avoid this for loop when I have a brain again.
+		let yOffsetSubtrator = 0;
+		for (let j = 0; j <= yOffset; j++) {
+			let num = (firstSpriteScanline + j) % 8;
+			if (num == 2 || num == 6) {
+				yOffsetSubtrator++;
+			}
+		}
+		yOffset -= yOffsetSubtrator;
+			
+		if (yOffset < 0) continue;
+		if (yOffset >= spriteHeight) continue; 
 
 		var spriteIndex = oamMemory[i + 1];
 		
 		if (oamMemory[i + 2] & 0x80) yOffset = spriteHeight - 1 - yOffset; // flipY
 		if (yOffset > 7) yOffset += 8; // skip second 8 bytes of a tile
 
+		// This is untested in e-reader/gba mode.
 		if (tallSprites && (spriteIndex & 1) != 0) {
 			yOffset += ((spriteIndex & 0xFE) | 0x100) << 4;
 		}
 		else {
 			yOffset += spriteIndex << 4;
 		}
+
 		// Save as much info as possible in sprite buffer to speed up the ppuPixel function.
 		// The NES does something almost similar when evaluating sprites, so it shouldn't cause compatibility problems, aside from games that actually rely on corrupting sprite reads(?)
 		sbi += 5;
@@ -256,9 +302,9 @@ function ppuPixel() {
 		}
 		pixelOnScanline++;
 		
-if (scanline == 261 && pixelOnScanline == 301) {
-	frameEnded = true; // timing fix
-}
+		if (scanline == 261 && pixelOnScanline == 301) {
+			frameEnded = true; // timing fix
+		}
 
 		
 		if (pixelOnScanline == 341) pixelOnScanline = 0;
@@ -643,7 +689,26 @@ function renderFrame() {
 			output.imageSmoothingEnabled = output.webkitImageSmoothingEnabled = output.mozImageSmoothingEnabled = true;
 		}
 		else {
-			context.putImageData(context.imageData, 0, 0);
+			let myImageData = context.imageData;
+			// FIXME: This isn't quite what needs to happen, we need to separate this and sprites
+			// But, it's a good start
+			if (isGbaMode) {
+
+				const origHeight = myImageData.height;
+				const data = myImageData.data.filter((p, idx) => {
+					const scanlineRow = Math.floor(idx / (myImageData.width * 4)),
+						pixelRow = scanlineRow % 8;
+					if (scanlineRow < 12 || scanlineRow >= 225) {
+						return false;
+					}
+					if (pixelRow === 2 || pixelRow === 6) {
+						return false;
+					}
+					return true;
+				})
+				myImageData = new ImageData(data, 256, 160);
+			}
+			context.putImageData(myImageData, 0, 0);
 			backBuffer = context.canvas;
 			output.imageSmoothingEnabled = output.webkitImageSmoothingEnabled = output.mozImageSmoothingEnabled = false;
 		}

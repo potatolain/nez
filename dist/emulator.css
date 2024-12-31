@@ -52,6 +52,10 @@ canvas {
 	position: relative;
 	height: 1.5em;
 }
+.controls .button.shader {
+	/* Feature not working, not sure if I broke it or what, but remove it to avoid confusion. */
+	display: none;
+}
 .controls [type=button].enabled, .controls .button.enabled {
 	background: #333333;
 }

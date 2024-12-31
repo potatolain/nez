@@ -7,6 +7,12 @@ window.EMULATOR_CONFIG = {
     // If you just put a file name, then put the rom file in the same folder as this file.
     game: null,
     // game: "game.nes"`
+    
+    // Set this to true to make NEZ act like the emulator used on the gba - the NES classic series, as well
+    // as e-reader roms.
+    // NOTE: This feature is pretty clunky, use it with care!
+    // FIXME: Disable this by default
+    pretendToBeGba: true,
 
     // Settings for the pretty version of the emulator that shows game description, etc... (index.html)
     HTML: {

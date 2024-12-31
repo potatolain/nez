@@ -14,9 +14,11 @@ IF %ERRORLEVEL% NEQ 0 (
 mkdir dist
 php -d display_errors=0 index.php > dist\index_untouched.html
 php -d display_errors=0 index_embed.php > dist\index_embed_untouched.html
+php -d display_errors=0 index_embed_ecard.php > dist\index_embed_ecard_untouched.html
 php -d display_errors=0 emulatorscript.php > dist\emulatorscript.js
 php -d display_errors=0 -r "echo str_replace('emulatorscript.php', 'emulatorscript.js', file_get_contents('./dist/index_untouched.html'));" > dist\index.html
 php -d display_errors=0 -r "echo str_replace('emulatorscript.php', 'emulatorscript.js', file_get_contents('./dist/index_embed_untouched.html'));" > dist\index_embed.html
+php -d display_errors=0 -r "echo str_replace('emulatorscript.php', 'emulatorscript.js', file_get_contents('./dist/index_embed_ecard_untouched.html'));" > dist\index_embed_ecard.html
 copy *.svg dist
 copy *.glsl dist
 copy *.png dist

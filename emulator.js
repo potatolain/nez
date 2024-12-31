@@ -4,6 +4,7 @@ window.emu = (function() {
 	
 	var delay = 1.0 / (1000.0 / 60.0);
 	var time = null;
+
 	
 	function shouldRenderNewFrame(timestamp) {
 		if (time === null)

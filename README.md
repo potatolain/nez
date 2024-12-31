@@ -7,6 +7,25 @@ as possible for individual developers to create a web-facing emulator for their 
 **All updates to this live in the `hackery` branch.** 
 The `master` branch will be kept up to date with the `Sumez/nez` `master` branch.
 
+## E-Reader Branch
+
+This is an _extremely_ quick-and-dirty hack of the emulator to behave somewhat like the e-reader after scanning a 
+set of cards containing a nrom-mapper rom. It mostly tweaks graphics to skip certain scanlines. 
+
+It doesn't make any other changes, however if you're releasing something on the e-reader, this may meet your
+needs. I don't really advertise it because it's messy hacky code that "works" for this limited use case.
+
+I originally wanted to add this as a first-class citizen, but doing this would be messy and require a lot of messy
+code in lots of places that doesn't really mesh with the goals of Nez otherwise. I'd much rather keep working on 
+Nez as a NES emulator, and let this live on its own.
+
+I'd love to emulate it for real, but emulating an emulator from within another emulator is messy, and raises
+some complex licensing questions. 
+
+If you need e-reader support for non-nes-formatted e-reader binaries however, you're in luck!
+
+Check this out: https://github.com/city41/ereader-z80-emulator
+
 # Setting up the emulator
 
 You have a number of options for setting up the emulator - all detailed below. 
