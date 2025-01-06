@@ -26,7 +26,7 @@ window.EMULATOR_CONFIG = {
         gameTitle: null,
 
         // Show the "Click to play" config - may help with mobile device embedding
-        showClickToPlay: false
+        showClickToPlay: false,
 
     }, 
 
@@ -34,6 +34,8 @@ window.EMULATOR_CONFIG = {
     EMBED: {
 
         // Show the "Click to play" config - may help with mobile device embedding
-        showClickToPlay: true
+        showClickToPlay: true,
+        // FIXME: Set this to false when it's time for this to get publicly used
+        showOpen: true,
     }
 };

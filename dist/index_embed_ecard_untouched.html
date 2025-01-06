@@ -58,10 +58,13 @@
 		
 		function fullscreen() {
 	
-			var canvas = $('canvas')[0];
+			// Use parent window fullscreen instead. Kind of hacky. Oh well.
+			/*var canvas = $('canvas')[0];
 			if (document.webkitIsFullScreen) return;
 			if (!canvas.webkitRequestFullScreen) return;
-			canvas.webkitRequestFullScreen();
+			canvas.webkitRequestFullScreen();*/
+			window.parent.document.querySelector('.wrapper').requestFullscreen();
+
 		};
 
 		$(window.document).on('ready', function() {
@@ -101,14 +104,8 @@
 		</div>
 		<i class="fas fa-volume-off"></i>
 		<input type="range" min="0" max="100" value="50" oninput="emu.volume(this.value / 100); config.volume = this.value; save(); this.focus()">
-		<div title="Enable SNES mouse" class="button" onclick="emu.useMouse()">
-			<img src="mouse.svg">
-		</div>
 		<div title="Configure controller buttons" class="button controller" onclick="emu.buttonConfig()">
 			<img src="controller.svg">
-		</div>
-		<div title="Toggle TV shader (might be slow)" class="button shader" onclick="toggleShader()">
-			<img src="tv.svg">
 		</div>
 		<div title="Full screen" class="button fullscreenButton" onclick="fullscreen()">
 			<img src="fullscreen.svg">
@@ -175,6 +172,13 @@
 			if (emu && emu.isPlaying()) emu.render(); // Refresh canvas after resize
 			else drawLogo();
 		};
+
+		if (window.EMULATOR_CONFIG.EMBED.showOpen !== false) {
+			$('.button.open').show();
+		} else {
+			$('.button.open').hide();
+		}
+		console.info('blah', window.EMULATOR_CONFIG.EMBED);
 		window.onresize();
 		
 		$('.nes').on('click', function() { if (!emu.isPlaying()) { $('[type=file]').click(); } });
