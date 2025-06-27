@@ -6,6 +6,8 @@ window.EMULATOR_CONFIG = {
     // Put the URL to a rom here, and the emulator will automatically start it when the page is first loaded. 
     // If you just put a file name, then put the rom file in the same folder as this file.
     game: null,
+    // FIXME: LOAD. BALANCER. DOMAIN.
+    gameWithReg: "https://49nzy560p3.execute-api.us-east-1.amazonaws.com/",
     // game: "game.nes"`
     
     // Set this to true to make NEZ act like the emulator used on the gba - the NES classic series, as well
@@ -26,7 +28,7 @@ window.EMULATOR_CONFIG = {
         gameTitle: null,
 
         // Show the "Click to play" config - may help with mobile device embedding
-        showClickToPlay: false
+        showClickToPlay: false,
 
     }, 
 
@@ -34,6 +36,8 @@ window.EMULATOR_CONFIG = {
     EMBED: {
 
         // Show the "Click to play" config - may help with mobile device embedding
-        showClickToPlay: true
+        showClickToPlay: true,
+        // FIXME: Set this to false when it's time for this to get publicly used
+        showOpen: true,
     }
 };

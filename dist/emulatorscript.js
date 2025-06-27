@@ -167,7 +167,7 @@ var outputBuffer = new ArrayBuffer(256*256*4);
 var outputBytes = new Uint8Array(outputBuffer);
 var outputColorEdit = new Uint8ClampedArray(outputBuffer);
 var outputColors = new Uint32Array(outputBuffer);
-var scanlineSpriteBuffer = new Uint8Array(8 * 5);
+var scanlineSpriteBuffer = new Uint8Array(12 * 5);
 var sbi = 0;
 function ppuScanline() {
 	
@@ -245,7 +245,7 @@ function ppuScanline() {
 		scanlineSpriteBuffer[sbi+2] = ppuMemory[spriteChrIndex | yOffset];// << 3;
 		scanlineSpriteBuffer[sbi+3] = ppuMemory[spriteChrIndex | yOffset + 8];// << 3;
 		scanlineSpriteBuffer[sbi+4] = 0;
-		if (sbi == 35) break; // 8 sprite limit
+		if (sbi == 55) break; // 10 sprite limit
 		
 		if (mapperListener) {
 			var map2 = mapperListener[spriteChrIndex | yOffset + 8];

@@ -8,11 +8,11 @@
 	<meta charset="utf-8" />
 	<title>E-Reader Game</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta property="og:title" content="Squishy The Turtle" />
-	<meta property="og:url" content="https://squishy-ecard.nes.science" />
+	<meta property="og:title" content="Dizzy Sheep Disaster: EX" />
+	<meta property="og:url" content="https://igwgames.com" />
 	<meta property="og:image" content="nez.png" />
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Squishy The Turtle" />
+	<meta name="twitter:title" content="Dizzy Sheep Disaster: EX" />
 	<meta name="twitter:description" content="A JavaScript based NES emulator" />
     <!-- FIXME BETTER IMAGE -->
 	<!-- <meta name="twitter:image" content="http://eternal.dk/emu/nez.png" /> -->
@@ -74,7 +74,11 @@
 				} else {
 					window.emu.startFromUrl(window.EMULATOR_CONFIG.game);
 				}
-			} else if (!window.EMULATOR_CONFIG.EMBED.showClickToPlay) {
+			} else if (window.EMULATOR_CONFIG.gameWithReg) {
+				$('#clickMe').hide();
+				$('#registrationKeyOverlay').show();
+			
+		 	} else if (!window.EMULATOR_CONFIG.EMBED.showClickToPlay) {
 				// Nothing to do here
 				$('#clickMe').hide();
 				$('.emulator').show();
@@ -82,15 +86,28 @@
 			}
 		});
 	</script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/inter.css">
 	<link rel="stylesheet" href="emulator.css">
 	<link rel="stylesheet" href="embed.css">
     <link rel="stylesheet" href="ecard.css">
 </head>
 <body <?php if ($_GET['debug'] == '1') { ?>class="debug"<?php } ?>>
-	<script type="text/javascript" src="emulatorscript.php?3"></script>
+	<script type="text/javascript" src="emulatorscript.js?3"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<img src="nez.png" style="display: none;" class="logo" />
 	<div id="clickMe" class="embed" style="display: block;" onclick="window.emu.startPreloadedGame()"><h1>Press here!</h1></div>
+	<div id="registrationKeyOverlay" class="embed" class="embed" style="display: none;">
+		<div class="inner">
+			<h1>Dizzy Sheep Disaster</h1>
+			<label for="regKey">Please enter the registration key from your card</label>
+			<fieldset>
+				<input id="regKey" type="text" placeholder="ABC123" onkeyup="event.key === 'Enter' ? sendRegistrationKey(document.getElementById('regKey').value) : function() {}" />
+			</fieldset>
+			<button onclick="sendRegistrationKey(document.getElementById('regKey').value)">Play!</button>
+			<div class="error" style="visibility: hidden">day<br/>tona</div>
+		</div>
+	</div>
+
 	<div class="emulator" style="display: none;">
 		<canvas class="nes" width="512" height="480"></canvas>
 	</div>
@@ -178,7 +195,6 @@
 		} else {
 			$('.button.open').hide();
 		}
-		console.info('blah', window.EMULATOR_CONFIG.EMBED);
 		window.onresize();
 		
 		$('.nes').on('click', function() { if (!emu.isPlaying()) { $('[type=file]').click(); } });
@@ -227,6 +243,40 @@
 		function hideInfo() {
 			$('#infoOverlay').hide();
 			$('#infoDialog').hide();
+		}
+
+		function sendRegistrationKey(key) {
+			fetch(window.EMULATOR_CONFIG.gameWithReg, {
+				method: 'POST',
+				body: JSON.stringify({apiKey: key})
+			}).then(res => {
+				console.info('res', res);
+				if (res.ok) {
+					res.json().then(data => {
+						if (data.rom) {
+							const url = `data:application/octet-stream;base64,${data.rom}`
+							window.emu.startFromUrl(url);
+							$('#registrationKeyOverlay').hide();
+							$('.emulator').show();
+						} else {
+							console.info('invalid key?', data);
+						}
+					}, err => {
+						console.info('something went wrong', err);
+						$('.error').html('Unable to verify your registration key. Please try again!').css('visibility', 'visible');
+					})
+				} else {
+					console.info('HTTP result was not okay');
+					if (res.status === 404) {
+						$('.error').html('<strong>Could not validate your registration key. Are you sure you typed it correctly?</strong><br />Registration keys will only contain capital letters and numbers excluding zero.').css('visibility', 'visible');
+					} else {
+						$('.error').html('Unable to verify your registration key. Please try again!').css('visibility', 'visible');
+					}
+				}
+			}, err => {
+				console.info('something went wrong', err);
+				$('.error').html('Unable to verify your registration key. Please try again!').css('visibility', 'visible');
+			})
 		}
 	</script>
 
