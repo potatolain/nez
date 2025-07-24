@@ -157,20 +157,30 @@ body.wrapper main {
 
     .emu-frame {
         width: 60vw;
-        height: 98vh;
-        height: 98svh;
+        height: 96vh;
+        height: 96svh;
         border: none;
         outline: none;
     }
 
     .gb-left {
         width: 20vw;
-        height: 98vh;
-        height: 98svh;
+        height: 96vh;
+        height: 96svh;
         background-color: #988993;
         border-radius: 15px 0 0 15px;
         position: relative;
     }
+
+    .gb-right {
+        width: 20vw;
+        height: 96vh;
+        height: 96svh;
+        background-color: #988993;
+        border-radius: 0 15px 15px 0;
+        position: relative;
+    }
+
 
     .ctrl-pad {
         position: absolute;
@@ -227,15 +237,6 @@ body.wrapper main {
         line-height: 4svh;
         cursor: pointer;
         color: #fff;
-    }
-
-    .gb-right {
-        width: 20vw;
-        height: 98vh;
-        height: 98svh;
-        background-color: #988993;
-        border-radius: 0 15px 15px 0;
-        position: relative;
     }
 
     .green-dot {
