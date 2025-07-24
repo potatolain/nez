@@ -51,6 +51,21 @@ body.wrapper main {
 	z-index: 1;
 }
 
+#registrationKeyOverlay {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; 
+    background-color: #000; 
+    color: #fff; 
+    text-align:center; 
+    margin: auto;
+    position: relative;
+    font-size: 140%;
+    font-family: Tahoma;
+    line-height: 1.5;
+}
+
 #registrationKeyOverlay .inner {
     position: absolute;
     top: 50%;
@@ -100,25 +115,10 @@ body.wrapper main {
     margin-top: 0;
 }
 
-#registrationKeyOverlay {
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer; 
-    background-color: #000; 
-    color: #fff; 
-    text-align:center; 
-    margin: auto;
-    position: relative;
-    font-size: 140%;
-    font-family: Tahoma;
-    line-height: 1.5;
-}
-
 #registrationKeyOverlay h1 {
 	font-family: serif;
     font-weight: normal;
-    font-size: 5em;
+    font-size: 3em;
 	margin: 0;
 }
 
@@ -143,28 +143,14 @@ body.wrapper main {
         border: none;
         outline: none;
     }
-    .uhoh {
-        display: none;
-    }
 }
 
-
-@media (hover: none) and (orientation: portrait) {
-    main > * {
-        display: none;
-    }
-    main > div.uhoh {
-        display: block;
-        color: #fff;
-        line-height: 100vh;
-        line-height: 100svh;
-        text-align: center;
-        width: 100vw;
-        font-size: 3vw;
-    }
-}
 
 @media (orientation: landscape) {
+    .gb-top {
+        display: none;
+    }
+
     .emu-frame, .gb-left, .gb-right {
         margin-top: 1vh;
     }
@@ -305,8 +291,189 @@ body.wrapper main {
         background-image: linear-gradient(0deg, #988993 50%, #afb0bc 50%);
         background-size: 8px 8px;
     }
+    .ctrl-pad .up {
+        transform: rotate(180deg);
+    }
 }
 
-.ctrl-pad .up {
-    transform: rotate(180deg);
+@media (orientation: portrait) {
+    .green-dot {
+        display: none;
+    }
+
+    .emu-frame, .gb-left, .gb-right {
+        margin-top: 1vh;
+    }
+
+    .emu-frame {
+        top: 5vh;
+        top: 5svh;
+        width: 98vw;
+        width: 98svw;
+        height: 55svh;
+        height: 55vh;
+        border: none;
+        outline: none;
+        position: absolute;
+    }
+
+    .gb-top {
+        height: 5vh;
+        width: 98vw;
+        width: 98svw;
+        background-color: #988993;
+        border-radius: 15px 15px 0 0;
+        position: absolute;
+        left: 1swv;
+        left: 1vw;
+    }
+
+
+    .gb-left {
+        width: 60vw;
+        width: 60svw;
+        height: 38vh;
+        height: 38svh;
+        background-color: #988993;
+        border-radius: 0 0 0 15px;
+        position: absolute;
+        top: 60vh;
+        top: 60svh;
+        left: 1swv;
+        left: 1vw;
+    }
+
+    .gb-right {
+        width: 40vw;
+        width: 40svw;
+        height: 38vh;
+        height: 38svh;
+        background-color: #988993;
+        border-radius: 0 0 15px 0;
+        position: absolute;
+        top: 60svh;
+        top: 60vh;
+        right: 1swv;
+        right: 1vw;
+    }
+
+    .ctrl-pad {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 20%;
+        left: 5vw;
+    }
+
+    .ctrl-pad > div {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .ctrl-pad .up, .ctrl-pad .down, .ctrl-pad .left, .ctrl-pad .right, .ctrl-pad .center {
+        width: 10vw;
+        height: 10vw; /* Equal sizing */
+        background-color: #ddd;
+        cursor: pointer;
+        line-height: 10vw;
+        font-size: 10vw;
+        color: #fff;
+    }
+
+    .ctrl-pad .up, .ctrl-pad .down {
+        margin-left: 10vw;
+    }
+
+    .ctrl-pad .center {
+        color: #ccc;
+    }
+
+    .start-select {
+        position: absolute;
+        bottom: 8vh;
+        bottom: 8svh;
+        right: 0vh;
+        right: 0svh;
+        display: flex;
+        flex-direction: row-reverse;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .start-select > div {
+        border-radius: 999px;
+        width: 14vw;
+        height: 3vh;
+        height: 3svh;
+        background-color: #ddd;
+        margin-right: 3vw;
+        margin-right: 1svw;
+        line-height: 9vh;
+        line-height: 9svh;
+        cursor: pointer;
+        color: #fff;
+        display: inline-block;
+        font-size: 2vh;
+        font-size: 2svh;
+    }
+
+
+    .green-dot {
+        background-color: greenyellow;
+        width: 1vw;
+        height: 1vh;
+        height: 1svh;
+        border-radius: 50%;
+        position: absolute;
+        top: 8vh;
+        top: 8svh;
+        left: 2vw;
+    }
+
+    .gb-right .buttons {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        right: 8svw;
+        right: 8vw;
+        bottom: 20vh;
+        bottom: 20svh;
+        text-align: center;
+    }
+
+    .gb-right .buttons > div {
+        border-radius: 50%;
+        color: #fff;
+        width: 12vw;
+        height: 12vw; /* Yes, really vw. I want them round! */
+        line-height: 12vw;
+        margin-left: 5vw;
+        font-size: 4vw;
+        
+        background-color: #ddd;
+    }
+
+    .gb-right .buttons .b {
+        margin-top: 4vh;
+        margin-top: 4svh;
+    }
+
+    .gb-right .grille {
+        position: absolute;
+        color: #ddd;
+        opacity: 0.8;
+        bottom: 10vh;
+        right: 4vw;
+        width: 12vw;
+        height: 12vh;
+        bottom: 4svh;
+        height: 12svh;
+        background-color: #988993;
+        background-image: radial-gradient(circle at center, #afb0bc 50%, #988993 50%);
+        background-size: 8px 8px;
+    }
+    .ctrl-pad .up {
+        transform: rotate(180deg);
+    }
 }
