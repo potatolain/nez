@@ -61,7 +61,6 @@ body.wrapper main {
     text-align:center; 
     margin: auto;
     position: relative;
-    font-size: 140%;
     font-family: Tahoma;
     line-height: 1.5;
 }
@@ -91,11 +90,14 @@ body.wrapper main {
     box-shadow: none;
     box-sizing: border-box;
     text-align: center;
+    font-size: 5vw;
+    font-size: 5svw;
 }
 
 #registrationKeyOverlay button {
     background: #0070f3;
-    font-size: 1rem;
+    font-size: 4vw;
+    font-size: 4svw;
     display: inline-block;
     padding: 6px 12px;
     text-align: center;
@@ -118,8 +120,14 @@ body.wrapper main {
 #registrationKeyOverlay h1 {
 	font-family: serif;
     font-weight: normal;
-    font-size: 3em;
+    font-size: 10vw;
+    font-size: 10svw;
 	margin: 0;
+}
+
+#registrationKeyOverlay label {
+    font-size: 3.5vw;
+    font-size: 3.5svw;
 }
 
 #registrationKeyOverlay fieldset {
@@ -132,12 +140,15 @@ body.wrapper main {
     border-radius: 5px;
     padding: 8px;
     line-height: 2;
+    font-size: 3vw;
+    font-size: 3svw;
 }
 
 
 @media (min-width: 0) {
     .emu-frame {
         width: 100vw;
+        width: 100svw;
         height: 100vh;
         height: 100svh;
         border: none;
@@ -157,6 +168,7 @@ body.wrapper main {
 
     .emu-frame {
         width: 60vw;
+        width: 60svw;
         height: 96vh;
         height: 96svh;
         border: none;
@@ -311,11 +323,13 @@ body.wrapper main {
         top: 5svh;
         width: 98vw;
         width: 98svw;
-        height: 55svh;
         height: 55vh;
+        height: 55svh;
         border: none;
         outline: none;
         position: absolute;
+        left: 1vw;
+        left: 1svw;
     }
 
     .gb-top {
@@ -340,8 +354,8 @@ body.wrapper main {
         position: absolute;
         top: 60vh;
         top: 60svh;
-        left: 1swv;
         left: 1vw;
+        left: 1svw;
     }
 
     .gb-right {
@@ -352,10 +366,10 @@ body.wrapper main {
         background-color: #988993;
         border-radius: 0 0 15px 0;
         position: absolute;
-        top: 60svh;
         top: 60vh;
-        right: 1swv;
+        top: 60svh;
         right: 1vw;
+        right: 1swv;
     }
 
     .ctrl-pad {

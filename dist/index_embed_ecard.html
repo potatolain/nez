@@ -7,7 +7,7 @@
     -->
 	<meta charset="utf-8" />
 	<title>E-Reader Game</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=overlays-content" />
 	<meta property="og:title" content="Dizzy Sheep Disaster: EX" />
 	<meta property="og:url" content="https://igwgames.com" />
 	<meta property="og:image" content="nez.png" />
