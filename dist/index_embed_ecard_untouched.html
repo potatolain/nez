@@ -250,7 +250,6 @@
 				method: 'POST',
 				body: JSON.stringify({apiKey: key})
 			}).then(res => {
-				console.info('res', res);
 				if (res.ok) {
 					res.json().then(data => {
 						if (data.rom) {
