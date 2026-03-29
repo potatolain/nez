@@ -104,7 +104,30 @@
 				<input id="regKey" type="text" placeholder="ABC123" onkeyup="event.key === 'Enter' ? sendRegistrationKey(document.getElementById('regKey').value) : function() {}" />
 			</fieldset>
 			<button onclick="sendRegistrationKey(document.getElementById('regKey').value)">Play!</button>
-			<div class="error" style="visibility: hidden">day<br/>tona</div>
+			<div class="error-layout">
+				Where is my code?<br />
+				<img alt="back of sheep item" src="sheeper.jpg" class="sheeper" />
+				Your code is on the back of the sheep that came with your card set!<br />
+			</div>
+
+			<div class="error error-layout" style="display: none;">day<br/>tona</div>
+		</div>
+	</div>
+
+	<div id="registrationKeySuccessOverlay" class="embed" style="display: none";>
+		<div class="inner">
+			<h2>Note</h2>
+			<p>The browser version of this game requires a lot of power!</p>
+			<p>If it doesn't play well, please try running it on laptop or desktop computer. The website is <strong>play-dizzy-sheep.nes.science</strong>.</p>
+			<h2>Controls</h2>
+			<ul>
+				<li><strong>Hold On</strong>: A Button / Spacebar</li>
+				<li><strong>Start Game</strong>: Start Button / Enter Key</li>
+			</ul>
+			<h2>Contact</h2>
+			<p>Running issues? Contact Sarah on <a href="https://bsky.app/profile/SarahLynne.bsky.social">bluesky</a> or <a href="mailto:sarah@igwgames.com">email</a>!</p>
+			<button onclick="startGame();">Play!</button>
+
 		</div>
 	</div>
 
@@ -133,6 +156,7 @@
 	</div>
 
 	<script type="text/javascript">
+		var romUrlForPreload;
 		var config = {};
 		if (localStorage.config) {
 			config = JSON.parse(localStorage.config);
@@ -245,6 +269,12 @@
 			$('#infoDialog').hide();
 		}
 
+		function startGame() {
+			window.emu.startFromUrl(romUrlForPreload);
+			$('#registrationKeySuccessOverlay').hide();
+			$('.emulator').show();
+		}
+
 		function sendRegistrationKey(key) {
 			fetch(window.EMULATOR_CONFIG.gameWithReg, {
 				method: 'POST',
@@ -253,28 +283,31 @@
 				if (res.ok) {
 					res.json().then(data => {
 						if (data.rom) {
-							const url = `data:application/octet-stream;base64,${data.rom}`
-							window.emu.startFromUrl(url);
+							romUrlForPreload = `data:application/octet-stream;base64,${data.rom}`;
 							$('#registrationKeyOverlay').hide();
-							$('.emulator').show();
+							$('#registrationKeySuccessOverlay').show();
 						} else {
 							console.info('invalid key?', data);
 						}
 					}, err => {
 						console.info('something went wrong', err);
-						$('.error').html('Unable to verify your registration key. Please try again!').css('visibility', 'visible');
+						$('.error-layout:not(.error)').hide();
+						$('.error').html('Unable to verify your registration key. Please try again!').show();
 					})
 				} else {
 					console.info('HTTP result was not okay');
 					if (res.status === 404) {
-						$('.error').html('<strong>Could not validate your registration key. Are you sure you typed it correctly?</strong><br />Registration keys will only contain capital letters and numbers excluding zero.').css('visibility', 'visible');
+						$('.error-layout:not(.error)').hide();
+						$('.error').html('<strong>Could not validate your registration key. Are you sure you typed it correctly?</strong><br />Registration keys will contain capital letters and numbers excluding zero.').show();
 					} else {
+						$('.error-layout:not(.error)').hide();
 						$('.error').html('Unable to verify your registration key. Please try again!').css('visibility', 'visible');
 					}
 				}
 			}, err => {
 				console.info('something went wrong', err);
-				$('.error').html('Unable to verify your registration key. Please try again!').css('visibility', 'visible');
+				$('.error-layout:not(.error)').hide();
+				$('.error').html('Unable to verify your registration key. Please try again!').show();
 			})
 		}
 	</script>

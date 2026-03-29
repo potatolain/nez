@@ -5,6 +5,8 @@ REM put in git to host directly using Github's sites feature. It requires PHP be
 REM This and `build_dist.sh` are identical in functionality - use the .bat on windows, and the .sh on other
 REM operating systems.
 
+REM nodemon --exec build_dist.bat --ext .js,.php --ignore dist
+
 WHERE php >nul 2>nul 
 IF %ERRORLEVEL% NEQ 0 (
     echo PHP needs to be installed and available on your path to build static assets.
@@ -23,5 +25,6 @@ copy *.svg dist
 copy *.glsl dist
 copy *.png dist
 copy *.css dist
+copy *.jpg dist
 copy config.js dist
 copy ereader_wrapper.html dist

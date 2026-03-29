@@ -8,6 +8,8 @@ set -e
 # This and `build_dist.bat` are identical in functionality - use the .bat on windows, and the .sh on other
 # operating systems.
 
+# nodemon --exec build_dist.sh --ext .js,.php --ignore dist
+
 
 command -v php >/dev/null 2>&1 || { echo "The php command is required to build static assets."; exit 1; }
 
@@ -22,5 +24,6 @@ php -d display_errors=0 -r "echo str_replace('emulatorscript.php', 'emulatorscri
 cp *.svg dist
 cp *.glsl dist
 cp *.png dist
+cp *.jpg dist
 cp *.css dist
 cp config.js dist
