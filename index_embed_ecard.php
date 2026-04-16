@@ -127,6 +127,8 @@
 			<h2>Contact</h2>
 			<p>Running issues? Contact Sarah on <a href="https://bsky.app/profile/SarahLynne.bsky.social">bluesky</a> or <a href="mailto:sarah@igwgames.com">email</a>!</p>
 			<button onclick="startGame();">Play!</button>
+			<br />
+			<button class="button-sm" onclick="downloadCards();">Download raw files</button>
 
 		</div>
 	</div>
@@ -157,6 +159,7 @@
 
 	<script type="text/javascript">
 		var romUrlForPreload;
+		var cardsForDownload;
 		var config = {};
 		if (localStorage.config) {
 			config = JSON.parse(localStorage.config);
@@ -275,6 +278,22 @@
 			$('.emulator').show();
 		}
 
+		function downloadCards() {
+			const decoded = window.atob(cardsForDownload),
+				buffer = new ArrayBuffer(decoded.length),
+				view = new Uint8Array(buffer);
+			for (let i = 0; i < decoded.length; i++) {
+				view[i] = decoded.charCodeAt(i);
+			}
+
+			const file = new Blob([buffer], {type: "application/zip"}),
+				link = document.createElement('a');
+			link.href = window.URL.createObjectURL(file);
+			link.download = 'dizzy-sheep-dotcodes.zip';
+			link.click();
+			
+		}
+
 		function sendRegistrationKey(key) {
 			fetch(window.EMULATOR_CONFIG.gameWithReg, {
 				method: 'POST',
@@ -284,6 +303,7 @@
 					res.json().then(data => {
 						if (data.rom) {
 							romUrlForPreload = `data:application/octet-stream;base64,${data.rom}`;
+							cardsForDownload = data.cards;
 							$('#registrationKeyOverlay').hide();
 							$('#registrationKeySuccessOverlay').show();
 						} else {
