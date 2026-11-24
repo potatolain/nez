@@ -107,7 +107,7 @@
 			<div class="error-layout">
 				Where is my code?<br />
 				<img alt="back of sheep item" src="sheeper.jpg" class="sheeper" />
-				Your code is on the back of the sheep that came with your card set!<br />
+				Your code is on the back of the sheep that came with your card set! (or your email)<br />
 			</div>
 
 			<div class="error error-layout" style="display: none;">day<br/>tona</div>

@@ -146,7 +146,8 @@ body.wrapper main {
     border-radius: 5px;
     padding: 8px;
     line-height: 2;
-    font-size: 2vw;
+    font-size: 1.5vw;
+    font-size: 1.5svw;
 }
 
 #registrationKeyOverlay .error-layout.error {
